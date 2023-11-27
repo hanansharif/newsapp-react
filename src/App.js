@@ -3,20 +3,37 @@ import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import News from "./components/News";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LoadingBar from 'react-top-loading-bar'
 
 export default class App extends Component {
   pageSize = 15;
+  apiKey = "8f266b6675504f33982bdb24bf0ec259"
+  // apiKey = process.env.REACT_APP_NEWS_API
+
+  state = {
+    progress: 0,
+  }
+
+  setProgress = (progress) => {
+    this.setState({ progress: progress })
+  }
+
   render() {
     return (
       <div>
         <Router>
           <Navbar />
+          <LoadingBar
+            height={3}
+            color='#f11946'
+            progress={this.state.progress}
+          />
           <Routes>
             <Route
               exact
               path="/"
               element={
-                <News
+                <News setProgress={this.setProgress} apiKey={this.apiKey}
                   key="general"
                   pageSize={this.pageSize}
                   country="in"
@@ -28,9 +45,9 @@ export default class App extends Component {
               exact
               path="/business"
               element={
-                <News
+                <News setProgress={this.setProgress} apiKey={this.apiKey}
                   key="business"
-                  ageSize={this.pageSize}
+                  pageSize={this.pageSize}
                   country="in"
                   category="business"
                 />
@@ -40,9 +57,9 @@ export default class App extends Component {
               exact
               path="/entertainment"
               element={
-                <News
+                <News setProgress={this.setProgress} apiKey={this.apiKey}
                   key="entertainment"
-                  ageSize={this.pageSize}
+                  pageSize={this.pageSize}
                   country="in"
                   category="entertainment"
                 />
@@ -52,9 +69,9 @@ export default class App extends Component {
               exact
               path="/health"
               element={
-                <News
+                <News setProgress={this.setProgress} apiKey={this.apiKey}
                   key="health"
-                  ageSize={this.pageSize}
+                  pageSize={this.pageSize}
                   country="in"
                   category="health"
                 />
@@ -64,9 +81,9 @@ export default class App extends Component {
               exact
               path="/science"
               element={
-                <News
+                <News setProgress={this.setProgress} apiKey={this.apiKey}
                   key="science"
-                  ageSize={this.pageSize}
+                  pageSize={this.pageSize}
                   country="in"
                   category="science"
                 />
@@ -76,9 +93,9 @@ export default class App extends Component {
               exact
               path="/sports"
               element={
-                <News
+                <News setProgress={this.setProgress} apiKey={this.apiKey}
                   key="sports"
-                  ageSize={this.pageSize}
+                  pageSize={this.pageSize}
                   country="in"
                   category="sports"
                 />
@@ -88,9 +105,9 @@ export default class App extends Component {
               exact
               path="/technology"
               element={
-                <News
+                <News setProgress={this.setProgress} apiKey={this.apiKey}
                   key="technology"
-                  ageSize={this.pageSize}
+                  pageSize={this.pageSize}
                   country="in"
                   category="technology"
                 />
